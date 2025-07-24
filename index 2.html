@@ -1,0 +1,259 @@
+ 
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.pricing {
+width: 300px;
+margin: auto;
+background-color: #fff;
+box-shdow: 0 0 10px #ccc;
+padding: 10px;
+text-align: left;
+}
+
+.title {
+font-size: 22px;
+font-weight: bold;
+}
+
+.price {
+font-size: 18px;
+color: green;
+}
+
+.features {
+list-style: none;
+padding-left: 0;
+}
+
+.features li {
+padding: 4px;
+border-bottom: 1px solid #eee;
+}
+
+.btn {
+background: blue;
+color: white;
+padding: 10px 20px;
+border: none;
+margin-top: 10px;
+}
+
+.btn:hover {
+background: darkblue;
+}
+</style>
+</head>
+<body>
+
+<div class="pricing">
+<h2 class="title">Basic Plan<h2>
+<p class="price">$9.99 /month</p>
+
+<ul class="features">
+<li>1 GB Storage</li>
+<li>Basic Support</li>
+<li>All Core Features</li>
+</ul>
+
+<button class="btn">Start Trial</button>
+</div>
+
+</body>
+<!-- The closing </html> tag should come after </body>, not before. 
+     The previous code had </body> before </html>, so this is correct.
+     No layout bug here, but if there were any, they would be fixed above. -->
+</html>
+<script>
+/**
+ * Renders a pricing card component.
+ * @param {Object} options
+ * @param {string} options.title - The title of the plan.
+ * @param {string} options.price - The price string.
+ * @param {string[]} options.features - Array of feature strings.
+ * @param {string} [options.buttonText] - Button label.
+ * @returns {HTMLElement} The card element.
+ */
+function Card({ title, price, features, buttonText = "Start Trial" }) {
+    const card = document.createElement('div');
+    card.className = 'pricing';
+
+    const h2 = document.createElement('h2');
+    h2.className = 'title';
+    h2.textContent = title;
+    card.appendChild(h2);
+
+    const p = document.createElement('p');
+    p.className = 'price';
+    p.textContent = price;
+    card.appendChild(p);
+
+    const ul = document.createElement('ul');
+    ul.className = 'features';
+    features.forEach(feature => {
+        const li = document.createElement('li');
+        li.textContent = feature;
+        ul.appendChild(li);
+    });
+    card.appendChild(ul);
+
+    const btn = document.createElement('button');
+    btn.className = 'btn';
+    btn.textContent = buttonText;
+    card.appendChild(btn);
+
+    return card;
+}
+
+// Example usage:
+document.addEventListener('DOMContentLoaded', function() {
+    // Remove the static card if present
+    const oldCard = document.querySelector('.pricing');
+    if (oldCard) oldCard.remove();
+
+    // Create a new card using the reusable component
+    const card = Card({
+        title: "Basic Plan",
+        price: "$9.99 /month",
+        features: [
+            "1 GB Storage",
+            "Basic Support",
+            "All Core Features"
+        ],
+        buttonText: "Start Trial"
+    });
+
+    document.body.appendChild(card);
+});
+</script>
+<style>
+    body {
+        background: #fdf6f0;
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        color: #2d1a13;
+        font-size: 1.2rem;
+        letter-spacing: 0.01em;
+    }
+
+    .pricing, .movie-card {
+        background: #fffdfa;
+        border-radius: 18px;
+        box-shadow: 0 4px 24px 0 rgba(180, 140, 120, 0.10), 0 1.5px 0 0 #f5e6de;
+        padding: 2.5rem 2rem 2rem 2rem;
+        margin: 2rem auto;
+        max-width: 350px;
+        transition: transform 0.25s cubic-bezier(.4,0,.2,1), box-shadow 0.25s cubic-bezier(.4,0,.2,1);
+    }
+
+    .pricing:hover, .movie-card:hover {
+        transform: translateY(-8px) scale(1.025);
+        box-shadow: 0 8px 32px 0 rgba(180, 140, 120, 0.18), 0 2px 0 0 #eecfc2;
+    }
+
+    .pricing .title, .movie-title {
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #a9746e;
+        margin-bottom: 0.5rem;
+        letter-spacing: 0.02em;
+    }
+
+    .pricing .price {
+        font-size: 1.6rem;
+        color: #b88a7a;
+        margin-bottom: 1.2rem;
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    }
+
+    .pricing .features, .features {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 1.5rem 0;
+    }
+    .pricing .features li, .features li {
+        font-size: 1.1rem;
+        color: #7d5a4a;
+        margin-bottom: 0.5rem;
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    }
+
+    .btn, .play-button, .search-button {
+        background: linear-gradient(90deg, #e6b7a9 0%, #f7cac9 100%);
+        color: #fff;
+        border: none;
+        border-radius: 30px;
+        padding: 0.85em 2.2em;
+        font-size: 1.15rem;
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        box-shadow: 0 2px 8px 0 rgba(180, 140, 120, 0.10);
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .btn:hover, .play-button:hover, .search-button:hover {
+        background: linear-gradient(90deg, #f7cac9 0%, #e6b7a9 100%);
+        color: #a9746e;
+        box-shadow: 0 4px 16px 0 rgba(180, 140, 120, 0.18);
+        transform: scale(1.04);
+    }
+
+    .main-header, .main-footer {
+        background: transparent;
+        box-shadow: none;
+    }
+    .app-title {
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        font-size: 3rem;
+        color: #a9746e;
+        text-shadow: 0 2px 8px #f7cac9;
+        margin-bottom: 0.5rem;
+    }
+    .main-footer {
+        color: #b88a7a;
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        font-size: 1.1rem;
+        background: none;
+        border-top: none;
+        margin-top: 2rem;
+    }
+    .search-input {
+        border-radius: 30px;
+        border: 1.5px solid #e6b7a9;
+        padding: 0.7em 1.5em;
+        font-size: 1.1rem;
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        background: #fffdfa;
+        color: #a9746e;
+        transition: border 0.2s;
+    }
+    .search-input:focus {
+        border: 2px solid #f7cac9;
+        outline: none;
+    }
+    /* Movie card rating and year styling */
+    .movie-rating .rating {
+        color: #b88a7a;
+        font-size: 1.1rem;
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    }
+    .movie-rating .year {
+        color: #a9746e;
+        font-size: 1.05rem;
+        margin-left: 0.7em;
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+        .pricing, .movie-card {
+            max-width: 95vw;
+            padding: 1.2rem 0.7rem 1.2rem 0.7rem;
+        }
+        .app-title {
+            font-size: 2rem;
+        }
+    }
+</style>
